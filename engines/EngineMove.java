@@ -39,7 +39,7 @@ public class EngineMove {
 	}
 
 	public string toString() {
-		return move.toString()
+		return move.toString();
 	}
 
 	public void print() {
