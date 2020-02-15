@@ -24,11 +24,7 @@ public class Main {
 			if (b.isDone()) break;
 			System.out.println("Running . . .");
 			EngineMove engine = greedy.bestMove(3, b);
-			System.out.println(engine.getMove());
-			System.out.println("Depth reached: " + engine.getDepth());
-			System.out.println("Evaluation: " + engine.getEval());
-			System.out.println("Nodes reached: " + engine.getNodeCount());
-			System.out.println("Time in seconds: " + engine.getTime()/1000.0);
+			engine.print();
 			b.move(engine.getMove());
 		}
 		sc.close();

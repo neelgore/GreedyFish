@@ -41,5 +41,13 @@ public class EngineMove {
 	public string toString() {
 		return move.toString()
 	}
+
+	public void print() {
+		System.out.println("Move: " + m.toString());
+		System.out.println("Depth reached: " + depth);
+		System.out.println("Evaluation: " + eval);
+		System.out.println("Nodes reached: " + nodeCount);
+		System.out.println("Time in seconds: " + time/1000.0);
+	}
 	
 }
