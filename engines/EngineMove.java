@@ -37,5 +37,9 @@ public class EngineMove {
 	public int getTime() {
 		return time;
 	}
+
+	public string toString() {
+		return move.toString()
+	}
 	
 }
