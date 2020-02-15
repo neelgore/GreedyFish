@@ -14,7 +14,7 @@ public class Main {
 		Board b = new Board();
 		Scanner sc = new Scanner(System.in);
 		TreeEngine greedy = new GreedyFish();
-		while (!b.bim() && !b.wim()) {
+		while (!b.isDone()) {
 			Move user = b.parseMove(sc.next());
 			while (user == null) {
 				System.out.println("invalid move");
