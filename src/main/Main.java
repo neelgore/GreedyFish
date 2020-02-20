@@ -15,9 +15,15 @@ public class Main {
 		Scanner sc = new Scanner(System.in);
 		TreeEngine greedy = new GreedyFish();
 		while (!b.isDone()) {
-			Move user = b.parseMove(sc.next());
+			System.out.println("Play a move:");
+			String userString = sc.next();
+			if (userString.equals("quit")) {
+				System.out.println("Quitting");
+				System.exit(0);
+			}
+			Move user = b.parseMove(userString);
 			while (user == null) {
-				System.out.println("invalid move");
+				System.out.println("Invalid move. Try again:");
 				user = b.parseMove(sc.next().strip());
 			}
 			b.move(user);
