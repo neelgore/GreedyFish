@@ -14,26 +14,52 @@ public class Main {
 		Board b = new Board();
 		Scanner sc = new Scanner(System.in);
 		TreeEngine greedy = new GreedyFish();
+		System.out.println("Enter moves using exact algebraic notation. Type \"quit\" to quit.");
 		while (!b.isDone()) {
 			System.out.println("Play a move:");
 			String userString = sc.next();
-			if (userString.equals("quit")) {
-				System.out.println("Quitting");
-				System.exit(0);
-			}
+			quit(userString);
 			Move user = b.parseMove(userString);
 			while (user == null) {
 				System.out.println("Invalid move. Try again:");
-				user = b.parseMove(sc.next().strip());
+				userString = sc.next();
+				quit(userString);
+				user = b.parseMove(userString);
 			}
 			b.move(user);
-			if (b.isDone()) break;
+			printBoard(b);
+			if (b.isDone()) finish(b);
 			System.out.println("Running . . .");
 			EngineMove engine = greedy.bestMove(3, b);
 			engine.print();
 			b.move(engine.getMove());
+			printBoard(b);
 		}
 		sc.close();
+	}
+
+	public static void finish(Board b) {
+		if (b.wim()) {
+			System.out.println("Black wins");
+		} else if (b.bim()) {
+			System.out.println("White wins");
+		} else {
+			System.out.println("Ended in a draw");
+		}
+		System.exit(0);
+	}
+
+	public static void quit(String s) {
+		if (s.equals("quit")) {
+			System.out.println("Quitting");
+			System.exit(0);
+		}
+	}
+
+	public static void printBoard(Board b) {
+		System.out.println();
+		System.out.println(b);
+		System.out.println();
 	}
 
 	

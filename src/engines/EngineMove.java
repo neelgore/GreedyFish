@@ -43,11 +43,13 @@ public class EngineMove {
 	}
 
 	public void print() {
+		System.out.println();
 		System.out.println("Move: " + move.toString());
 		System.out.println("Depth reached: " + depth);
 		System.out.println("Evaluation: " + eval);
 		System.out.println("Nodes reached: " + nodeCount);
 		System.out.println("Time in seconds: " + time/1000.0);
+		System.out.println();
 	}
 	
 }
