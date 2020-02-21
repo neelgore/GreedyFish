@@ -15,6 +15,7 @@ public class Main {
 		Scanner sc = new Scanner(System.in);
 		TreeEngine greedy = new GreedyFish();
 		System.out.println("Enter moves using exact algebraic notation. Type \"quit\" to quit.");
+		System.out.println("Algebraic notation: https://en.wikipedia.org/wiki/Algebraic_notation_(chess)");
 		while (!b.isDone()) {
 			System.out.println("Play a move:");
 			String userString = sc.next();

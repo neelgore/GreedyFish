@@ -494,7 +494,24 @@ public class Board {
 			me = whitePieces;
 		}
 		wtm = !wtm;
-		if (pieceAt(m.getTo()) != null) enemy.remove(pieceAt(m.getTo())); // remove captured piece
+		if (pieceAt(m.getTo()) != null) {
+			if (pieceAt(m.getTo()).getType().equals("Rook")) {
+				if (m.getTo().getFile() == 7) {
+					if (m.getPiece().isWhite()) {
+						bkc = false;
+					} else {
+						wkc = false;
+					}
+				} else if (m.getTo().getFile() == 0) { 
+					if (m.getPiece().isWhite()) {
+						bqc = false;
+					} else {
+						wqc = false;
+					}
+				}
+			}
+			enemy.remove(pieceAt(m.getTo())); // remove captured piece
+		}
 		if (m.getPiece().getType().equals("Pawn") && m.getFrom().getFile() != m.getTo().getFile() && pieceAt(m.getTo()) == null) { // en passant
 			Shift sh;
 			if (m.getPiece().isWhite()) {
