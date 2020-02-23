@@ -404,7 +404,6 @@ public class Board {
 				}
 			}
 		}
-		if (bim() || wim() || isStalemate() || insufficientMaterial()) isDone = true;
 	}
 
 	public void checkAdd(Move m) { // check if move results in being in check. if not, add to movelist
@@ -586,6 +585,7 @@ public class Board {
 		if (m.getPiece().getType().equals("Pawn") || pieceAt(m.getTo()) != null) {
 			halfMoveCount = 0;
 		}
+		if (bim() || wim() || isStalemate() || insufficientMaterial() || halfMoveCount >= 50) isDone = true;
 		if (!m.getPiece().isWhite()) {
 			fullMoveCount++;
 		}
