@@ -7,13 +7,15 @@ public class Main {
 
 	
 	public static void main(String[] args) {
-		playGame();
+		Scanner sc = new Scanner(System.in);
+		System.out.println("How many seconds would you like to give the engine per move?");
+		playGame(sc.nextInt());
 	}
 	
-	public static void playGame() {
+	public static void playGame(int timeInSeconds) {
 		Board b = new Board();
 		Scanner sc = new Scanner(System.in);
-		ForcingTreeEngine greedy = new ForcingGreedyFish();
+		PrunedTreeEngine greedy = new PrunedFish();
 		System.out.println("Enter moves using exact algebraic notation. Type \"quit\" to quit.");
 		System.out.println("Algebraic notation: https://en.wikipedia.org/wiki/Algebraic_notation_(chess)");
 		while (!b.isDone()) {
@@ -31,10 +33,11 @@ public class Main {
 			printBoard(b);
 			if (b.isDone()) finish(b);
 			System.out.println("Running . . .");
-			EngineMove engine = greedy.bestMove(2, b);
+			EngineMove engine = greedy.bestMove(b, timeInSeconds);
 			engine.print();
 			b.move(engine.getMove());
 			printBoard(b);
+			if (b.isDone()) finish(b);
 		}
 		sc.close();
 	}

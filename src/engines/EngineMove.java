@@ -1,6 +1,7 @@
 package engines;
 
 import representation.*;
+import java.lang.Math;
 
 public class EngineMove {
 
@@ -46,10 +47,18 @@ public class EngineMove {
 		System.out.println();
 		System.out.println("Move: " + move.toString());
 		System.out.println("Depth reached: " + depth);
-		System.out.println("Evaluation: " + eval);
+		if (eval > 100000) {
+			System.out.println("Evaluation: +MATE");
+		} else if (eval < -100000) {
+			System.out.println("Evaluation: -MATE");
+		} else {
+			String plus = "";
+			if (eval > 0) plus = "+";
+			System.out.println("Evaluation: " + plus + Math.round(eval*100.0)/100.0);
+		}
 		System.out.println("Nodes reached: " + nodeCount);
 		System.out.println("Time in seconds: " + time/1000.0);
 		System.out.println();
 	}
-	
+
 }

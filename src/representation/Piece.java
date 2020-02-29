@@ -26,6 +26,10 @@ public abstract class Piece {
 			abbreviation = type.substring(0, 1);
 		}
 	}
+
+	public abstract double materialValue();
+
+	public abstract double positionalValue();
 	
 	public boolean isWhite() {
 		return isWhite;

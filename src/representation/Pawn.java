@@ -14,5 +14,13 @@ public class Pawn extends Piece {
 		addShift(0, y);
 		addShift(0, 2*y);
 	}
+
+	public double materialValue() {
+		return 1;
+	}
+
+	public double positionalValue() {
+		return 1;
+	}
 	
 }

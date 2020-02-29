@@ -2,7 +2,7 @@ package engines;
 
 import representation.*;
 
-public class GreedyFish extends TreeEngine { // looks for mate, if not found looks for material
+public class PrunedFish extends PrunedTreeEngine { // looks for mate, if not found looks for material
 
 	public double eval(Board b) {
 		if (b.wim()) {
@@ -15,10 +15,10 @@ public class GreedyFish extends TreeEngine { // looks for mate, if not found loo
 		}
 		double answer = 0;
 		for (Piece p: b.getWhitePieces()) {
-			answer += p.materialValue();
+			answer += p.materialValue()*p.positionalValue();
 		}
 		for (Piece p: b.getBlackPieces()) {
-			answer -= p.materialValue();
+			answer -= p.materialValue()*p.positionalValue();
 		}
 		return answer;
 	}

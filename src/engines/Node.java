@@ -3,6 +3,7 @@ package engines;
 import java.util.HashSet;
 import representation.*;
 import java.util.Random;
+import java.lang.Math;
 
 public class Node {
 
@@ -67,7 +68,7 @@ public class Node {
 				contenders.clear();
 				contenders.add(n);
 				max = n.eval;
-			} else if (n.eval == max) {
+			} else if (Math.abs(n.eval - max) < 0.2) {
 				contenders.add(n);
 			}
 		}
@@ -82,7 +83,7 @@ public class Node {
 				contenders.clear();
 				contenders.add(n);
 				min = n.eval;
-			} else if (n.eval == min) {
+			} else if (Math.abs(n.eval - min) < 0.2) {
 				contenders.add(n);
 			}
 		}

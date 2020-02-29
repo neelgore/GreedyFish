@@ -12,5 +12,13 @@ public class Rook extends Piece{
 		addShift(0, 1);
 		addShift(0, -1);
 	}
+
+	public double materialValue() {
+		return 5;
+	}
+
+	public double positionalValue() {
+		return 1;
+	}
 	
 }
