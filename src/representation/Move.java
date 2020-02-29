@@ -10,6 +10,8 @@ public class Move {
 	private Square from;
 	private Square to;
 	private Piece promotion;
+	public boolean isCheck;
+	public boolean isCapture;
 	
 	public Move(Board b, Piece p, Square sq, Piece prom) {
 		isCastle = (p.getType().equals("King") && Math.abs(sq.getFile() - p.getSquare().getFile()) == 2);
@@ -18,6 +20,8 @@ public class Move {
 		from = piece.getSquare();
 		to = sq;
 		promotion = prom;
+		isCheck = false;
+		isCapture = false;
 	}
 	
 	public Move(Board b, Piece p, Square sq) {
@@ -27,6 +31,8 @@ public class Move {
 		from = piece.getSquare();
 		to = sq;
 		promotion = null;
+		isCheck = false;
+		isCapture = false;
 	}
 	
 	public Move(Board b, Square f, Square t) {
@@ -36,6 +42,8 @@ public class Move {
 		from = f;
 		to = t;
 		promotion = null;
+		isCheck = false;
+		isCapture = false;
 	}
 	
 	public boolean isCastle() {

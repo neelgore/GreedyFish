@@ -2,6 +2,7 @@ package engines;
 
 import java.util.HashSet;
 import representation.*;
+import java.util.Random;
 
 public class Node {
 
@@ -60,26 +61,44 @@ public class Node {
 
 	public Node maxNodeOfChildren() {
 		double max = Integer.MIN_VALUE;
-		Node answer = null;
+		HashSet<Node> contenders = new HashSet<Node>();
 		for (Node n: this.children) {
-			if (n.eval >= max) {
-				answer = n;
+			if (n.eval > max) {
+				contenders.clear();
+				contenders.add(n);
 				max = n.eval;
+			} else if (n.eval == max) {
+				contenders.add(n);
 			}
 		}
-		return answer;
+		return randomNode(contenders);
 	}
 
 	public Node minNodeOfChildren() {
 		double min = Integer.MAX_VALUE;
-		Node answer = null;
+		HashSet<Node> contenders = new HashSet<Node>();
 		for (Node n: this.children) {
-			if (n.eval <= min) {
-				answer = n;
+			if (n.eval < min) {
+				contenders.clear();
+				contenders.add(n);
 				min = n.eval;
+			} else if (n.eval == min) {
+				contenders.add(n);
 			}
 		}
-		return answer;
+		return randomNode(contenders);
 	}
 
+	public static Node randomNode(HashSet<Node> contenders) {
+		Random r = new Random();
+		int rand = r.nextInt(contenders.size());
+		int i = 0;
+		for (Node n: contenders) {
+			if (i == rand) {
+				return n;
+			}
+			i++;
+		}
+		return null;
+	}
 }

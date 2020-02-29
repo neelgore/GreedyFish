@@ -13,7 +13,7 @@ public class Main {
 	public static void playGame() {
 		Board b = new Board();
 		Scanner sc = new Scanner(System.in);
-		TreeEngine greedy = new GreedyFish();
+		ForcingTreeEngine greedy = new ForcingGreedyFish();
 		System.out.println("Enter moves using exact algebraic notation. Type \"quit\" to quit.");
 		System.out.println("Algebraic notation: https://en.wikipedia.org/wiki/Algebraic_notation_(chess)");
 		while (!b.isDone()) {
@@ -31,7 +31,7 @@ public class Main {
 			printBoard(b);
 			if (b.isDone()) finish(b);
 			System.out.println("Running . . .");
-			EngineMove engine = greedy.bestMove(3, b);
+			EngineMove engine = greedy.bestMove(2, b);
 			engine.print();
 			b.move(engine.getMove());
 			printBoard(b);

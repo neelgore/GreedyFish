@@ -510,8 +510,10 @@ public class Board {
 				}
 			}
 			enemy.remove(pieceAt(m.getTo())); // remove captured piece
+			m.isCapture = true;
 		}
 		if (m.getPiece().getType().equals("Pawn") && m.getFrom().getFile() != m.getTo().getFile() && pieceAt(m.getTo()) == null) { // en passant
+			m.isCapture = true;
 			Shift sh;
 			if (m.getPiece().isWhite()) {
 				sh = new Shift(0, -1);
@@ -589,6 +591,7 @@ public class Board {
 		if (!m.getPiece().isWhite()) {
 			fullMoveCount++;
 		}
+		if ((wtm && wic()) || (!wtm && bic())) m.isCheck = true;
 	}
 	
 	public void move(String f, String t) {
@@ -633,7 +636,10 @@ public class Board {
 	
 	public Board ifMove(Move m) {
 		Board newBoard = new Board(this);
-		newBoard.move(new Move(newBoard, newBoard.pieceAt(m.getFrom()), m.getTo(), m.getPromotion()));
+		Move newMove = new Move(newBoard, newBoard.pieceAt(m.getFrom()), m.getTo(), m.getPromotion());
+		newBoard.move(newMove);
+		m.isCheck = newMove.isCheck;
+		m.isCapture = newMove.isCapture;
 		return newBoard;
 	}
 	

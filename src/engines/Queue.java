@@ -32,4 +32,8 @@ public class Queue {
 		return list.size();
 	}
 
+	public boolean isEmpty() {
+		return list.size() == 0;
+	}
+
 }
